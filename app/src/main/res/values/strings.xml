@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DEADvastation</string>
+    <string name="login">Login</string>
+    <string name="guest">Continue as Guest</string>
+    <string name="title_image_desc">This is an image of a zombies in a city</string>
+    <color name="vivid_red">#fd0414</color>
+    <color name="eerie_black">#161519</color>
+    <color name="gunmetal">#2b343f</color>
+    <color name="old_burgundy">#44322d</color>
+    <color name="black_leather_jacket">#313628</color>
+    <color name="brass">#b39c4d</color>
 </resources>
