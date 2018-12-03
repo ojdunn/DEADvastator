@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item android:title="@string/menu_game"
-        android:id="@+id/game"
+        android:id="@+id/action_game"
         app:showAsAction="never" />
+
     <item android:title="@string/menu_options"
-        android:id="@+id/options"
+        android:id="@+id/action_options"
         app:showAsAction="never" />
+
     <item android:title="@string/menu_shop"
-        android:id="@+id/shop"
+        android:id="@+id/action_shop"
         app:showAsAction="never" />
+
+    <item android:title="@string/loadout_high_scores_button"
+        android:id="@+id/action_high_scores"
+        app:showAsAction="never" />
+
 </menu>

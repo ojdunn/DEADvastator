@@ -2,7 +2,7 @@
     <string name="app_name">DEADvastation</string>
     <string name="login">Login</string>
     <string name="guest">Continue as Guest</string>
-    <string name="title_image_desc">This is an image of a zombies in a city</string>
+    <string name="title_image_desc">This is an image of zombies in a city</string>
     <string name="loadout_directions">Select your Gear</string>
     <string name="loadout_current_high_score">Current High Score:</string>
     <string name="loadout_high_scores_button">High Scores</string>
@@ -13,4 +13,18 @@
     <string name="menu_game">Game</string>
     <string name="menu_options">Options</string>
     <string name="menu_shop">Shop</string>
+    <string name="shop_title">Gold Shop</string>
+    <string name="shop_item1">Pistol</string>
+    <string name="shop_price1">10</string>
+    <string name="shop_item1_desc">a small pistol</string>
+    <string name="shop_item2">AK 47</string>
+    <string name="shop_price2">200</string>
+    <string name="shop_item2_desc">an automatic rifle</string>
+    <string name="shop_item3">Rocket Launcher</string>
+    <string name="shop_price3">1000</string>
+    <string name="shop_item3_desc">a rocket launcher</string>
+    <string name="shop_message">Please Select an Item.</string>
+    <string name="options_title">Options</string>
+    <string name="options_sound_effects">Sound Effects</string>
+    <string name="options_music_volume">Music Volume</string>
 </resources>
