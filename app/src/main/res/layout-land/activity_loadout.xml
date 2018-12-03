@@ -18,16 +18,18 @@
         android:src="@drawable/zombies_city2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/loadoutDescriptionView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/permanent_marker"
         android:text="@string/loadout_directions"
         android:textAlignment="center"
@@ -35,20 +37,23 @@
         android:textColor="@color/vivid_red"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/hardButton"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <ImageButton
         android:id="@+id/hardButton"
-        android:layout_width="90dp"
+        android:layout_width="89dp"
         android:layout_height="72dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:adjustViewBounds="false"
         android:contentDescription="@string/desc_worst_gear"
         android:cropToPadding="false"
         app:layout_constraintBottom_toTopOf="@+id/normalButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loadoutDescriptionView"
         app:srcCompat="@drawable/ic_fist" />
@@ -67,10 +72,11 @@
     <ImageButton
         android:id="@+id/easyButton"
         android:layout_width="90dp"
-        android:layout_height="75dp"
+        android:layout_height="73dp"
         android:adjustViewBounds="false"
         android:contentDescription="@string/desc_best_gear"
         android:cropToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/normalButton"
         app:layout_constraintStart_toStartOf="@+id/normalButton"
         app:layout_constraintTop_toBottomOf="@+id/normalButton"
@@ -80,20 +86,24 @@
         android:id="@+id/currentHighScoreView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/permanent_marker"
         android:text="@string/loadout_current_high_score"
         android:textAlignment="center"
         android:textColor="@color/vivid_red"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/loadoutHighScoreView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/easyButton" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/loadoutHighScoreView"
-        android:layout_width="0dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/permanent_marker"
@@ -101,6 +111,7 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/vivid_red"
+        app:layout_constraintBottom_toTopOf="@+id/playButton"
         app:layout_constraintEnd_toEndOf="@+id/currentHighScoreView"
         app:layout_constraintStart_toStartOf="@+id/currentHighScoreView"
         app:layout_constraintTop_toBottomOf="@+id/currentHighScoreView" />
@@ -108,7 +119,7 @@
     <Button
         android:id="@+id/playButton"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
+        android:layout_width="111dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@color/brass"
@@ -116,8 +127,8 @@
         android:text="@string/loadout_play_button"
         android:textAlignment="center"
         android:textColor="@color/eerie_black"
+        app:layout_constraintBottom_toTopOf="@+id/highScoresButton"
         app:layout_constraintEnd_toEndOf="@+id/highScoresButton"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/highScoresButton"
         app:layout_constraintTop_toBottomOf="@+id/loadoutHighScoreView" />
 
@@ -128,14 +139,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/brass"
         android:fontFamily="@font/permanent_marker"
         android:text="@string/loadout_high_scores_button"
         android:textAlignment="center"
         android:textColor="@color/eerie_black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/playButton" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </android.support.constraint.ConstraintLayout>

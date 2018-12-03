@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#00574b</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="vivid_red">#fd0414</color>
+    <color name="eerie_black">#161519</color>
+    <color name="gunmetal">#2b343f</color>
+    <color name="old_burgundy">#44322d</color>
+    <color name="black_leather_jacket">#313628</color>
+    <color name="brass">#b39c4d</color>
 </resources>
