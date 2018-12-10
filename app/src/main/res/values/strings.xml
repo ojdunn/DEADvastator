@@ -6,6 +6,7 @@
     <string name="loadout_directions">Your Gear</string>
     <string name="loadout_current_high_score">Current High Score:</string>
     <string name="loadout_high_scores_button">High Scores</string>
+    <string name="save_game">Save Game</string>
     <string name="desc_worst_gear">Worst Gear</string>
     <string name="desc_normal_gear">Normal Gear</string>
     <string name="desc_best_gear">Best Gear</string>

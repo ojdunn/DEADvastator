@@ -29,6 +29,8 @@ public class LoadoutActivity extends AppCompatActivity {
     private Button playButton;
     private Button highScoresButton;
     private ImageView gearChoice;
+    private TextView gearName;
+    private Button saveButton;
 
     // Game state variables (may want in own class)
     // todo share variables with game to control state
@@ -37,8 +39,9 @@ public class LoadoutActivity extends AppCompatActivity {
     public enum loadout {PISTOL, RIFLE, SNIPER};
     public loadout loadout;
 //    public int ammoCount = 0;  // account for this?
-    public int currentScore = 100;  // todo put back at 0 after testing
-    public int health = 100;  // start at 100
+    public Integer score = 100;  // todo put back at 0 after testing
+    public Integer highScore = 100;  // todo retrieve from db
+    public Integer health = 100;  // start at 100
 
 
     @Override
@@ -52,47 +55,56 @@ public class LoadoutActivity extends AppCompatActivity {
 //        hardButton = findViewById(R.id.hardButton);
         currentHighScore = findViewById(R.id.loadoutHighScoreView);
         playButton = findViewById(R.id.playButton);
-        highScoresButton = findViewById(R.id.highScoresButton);
+//        highScoresButton = findViewById(R.id.highScoresButton);
         gearChoice = findViewById(R.id.gearImage);
+        gearName = findViewById(R.id.gearName);
+        saveButton = findViewById(R.id.saveButton);
 
         //todo if user logged in, get the high score from the db
 
-
-        // Add listeners for buttons.
-        //todo save user choice in a variable to use with game item (done through shop instead)
-//        easyButton.setOnClickListener(v -> {
-//            weapon = loadout.EASY;
-//            //fromField.setText("");
-//        });
-//        normalButton.setOnClickListener(v -> {
-//            weapon = loadout.NORMAL;
-//            //fromField.setText("");
-//        });
-//        hardButton.setOnClickListener(v -> {
-//            weapon = loadout.HARD;
-//            //fromField.setText("");
-//        });
+        // update scores
+        if (score >= highScore) {
+            highScore = score;
+            currentHighScore.setText(score.toString());
+        }
 
         playButton.setOnClickListener(v -> {
             // todo transition to game activity
-            
+            Intent intent = new Intent(LoadoutActivity.this, GameActivity.class);
+            intent.putExtra("item", itemNumber);
+            intent.putExtra("score", score);
+            intent.putExtra("health", health);
+//            intent.putExtra("ammo", ammoCount);
+            startActivityForResult(intent, GAME_RESULT);
         });
 
+        saveButton.setOnClickListener(v -> {
+            // todo save data to db
+
+        });
+
+        // these are reached only through options drop down
 //        shopButton.setOnClickListener(v -> {
-//            // todo transition to high scores activity
 //
 //        });
 
-        highScoresButton.setOnClickListener(v -> {
-            // todo transition to high scores activity
-
-        });
-
-        // todo add save button
-//        saveButton.setOnClickListener(v -> {
-//            // todo transition to high scores activity
+//        highScoresButton.setOnClickListener(v -> {
 //
 //        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // todo update the game data
+
+        // todo update the display views
+        // update scores
+        if (score >= highScore) {
+            highScore = score;
+            currentHighScore.setText(score.toString());
+        }
+
     }
 
     @Override
@@ -105,7 +117,8 @@ public class LoadoutActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_game) {
             Intent intent = new Intent(LoadoutActivity.this, GameActivity.class);
-            intent.putExtra("score", currentScore);
+            intent.putExtra("item", itemNumber);
+            intent.putExtra("score", score);
             intent.putExtra("health", health);
 //            intent.putExtra("ammo", ammoCount);
             startActivityForResult(intent, GAME_RESULT);
@@ -117,7 +130,7 @@ public class LoadoutActivity extends AppCompatActivity {
             return true;
         } else if(item.getItemId() == R.id.action_shop) {
             Intent intent = new Intent(LoadoutActivity.this, ShopActivity.class);
-            intent.putExtra("score", currentScore);
+            intent.putExtra("score", score);
             startActivityForResult(intent, SHOP_RESULT);
             return true;
         } else if(item.getItemId() == R.id.action_high_scores) {
@@ -149,6 +162,7 @@ public class LoadoutActivity extends AppCompatActivity {
                 case 0:
                     id = getResources().getIdentifier("ic_handgun", "drawable", getPackageName());
                     this.gearChoice.setImageResource(id);
+
                     break;
                 case 1:
                     id = getResources().getIdentifier("ic_automatic_weapon", "drawable", getPackageName());
@@ -161,13 +175,7 @@ public class LoadoutActivity extends AppCompatActivity {
             }
 
             this.itemName = vals[1];
-
-//            this.fromField.setText(vals[0]);
-//            this.toField.setText(vals[1]);
-//            this.mode = Mode.valueOf(vals[2]);
-//            this.fromUnits.setText(vals[3]);
-//            this.toUnits.setText(vals[4]);
-//            this.title.setText(mode.toString() + " Converter");
+            gearName.setText(this.itemName);
 
         } else if (resultCode == HIGH_SCORES_RESULT) {
             // todo update text of high score
@@ -175,17 +183,11 @@ public class LoadoutActivity extends AppCompatActivity {
 
         }
 
-//        if (resultCode == SETTINGS_RESULT) {
-//            this.fromUnits.setText(data.getStringExtra("fromUnits"));
-//            this.toUnits.setText(data.getStringExtra("toUnits"));
-//        } else if (resultCode == HISTORY_RESULT) {
-//            String[] vals = data.getStringArrayExtra("item");
-//            this.fromField.setText(vals[0]);
-//            this.toField.setText(vals[1]);
-//            this.mode = Mode.valueOf(vals[2]);
-//            this.fromUnits.setText(vals[3]);
-//            this.toUnits.setText(vals[4]);
-//            this.title.setText(mode.toString() + " Converter");
+//        public void updateScores() {
+//            if (score > highScore) {
+//                highScore = score;
+//                currentHighScore.setText(score.toString());
+//            }
 //        }
 
     }
