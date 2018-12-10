@@ -37,7 +37,7 @@ public class LoadoutActivity extends AppCompatActivity {
     public enum loadout {PISTOL, RIFLE, SNIPER};
     public loadout loadout;
 //    public int ammoCount = 0;  // account for this?
-    public int currentScore = 0;
+    public int currentScore = 100;  // todo put back at 0 after testing
     public int health = 100;  // start at 100
 
 

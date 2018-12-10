@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import edu.gvsu.cis.deadvastation.ItemsFragment.OnListFragmentInteractionListener;
@@ -38,6 +39,17 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         holder.mItem = mValues.get(position);
         holder.mShopItemName.setText(holder.mItem.itemName);
         holder.mShopPrice.setText(holder.mItem.itemPrice.toString());
+        if (holder.mItem.itemNumber == 0) {
+            // pistol icon
+            holder.mImage.setImageDrawable(holder.mImage.getResources().getDrawable(R.drawable.ic_handgun));
+        } else if (holder.mItem.itemNumber == 1) {
+            // rifle icon
+            holder.mImage.setImageDrawable(holder.mImage.getResources().getDrawable(R.drawable.ic_automatic_weapon));
+        } else if (holder.mItem.itemNumber == 2) {
+            // sniper icon
+            holder.mImage.setImageDrawable(holder.mImage.getResources().getDrawable(R.drawable.ic_sniper_rifle));
+        }
+        // add more images here as more choices added to game
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +72,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         public final View mView;
         public final TextView mShopItemName;
         public final TextView mShopPrice;
+        public final ImageView mImage;
         public ShopItem mItem;
 
         public ViewHolder(View view) {
@@ -67,6 +80,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             mView = view;
             mShopItemName = (TextView) view.findViewById(R.id.shopItemName);
             mShopPrice = (TextView) view.findViewById(R.id.shopPrice);
+            mImage = (ImageView) view.findViewById(R.id.imageRV);
         }
 
 //        @Override
