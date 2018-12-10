@@ -37,50 +37,11 @@
         android:textColor="@color/vivid_red"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/hardButton"
+        app:layout_constraintBottom_toTopOf="@+id/gearImage"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread" />
-
-    <ImageButton
-        android:id="@+id/hardButton"
-        android:layout_width="89dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/desc_worst_gear"
-        android:cropToPadding="false"
-        app:layout_constraintBottom_toTopOf="@+id/normalButton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loadoutDescriptionView"
-        app:srcCompat="@drawable/ic_fist" />
-
-    <ImageButton
-        android:id="@+id/normalButton"
-        android:layout_width="89dp"
-        android:layout_height="74dp"
-        android:contentDescription="@string/desc_normal_gear"
-        app:layout_constraintBottom_toTopOf="@+id/easyButton"
-        app:layout_constraintEnd_toEndOf="@+id/hardButton"
-        app:layout_constraintStart_toStartOf="@+id/hardButton"
-        app:layout_constraintTop_toBottomOf="@+id/hardButton"
-        app:srcCompat="@drawable/ic_handgun" />
-
-    <ImageButton
-        android:id="@+id/easyButton"
-        android:layout_width="90dp"
-        android:layout_height="73dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/desc_best_gear"
-        android:cropToPadding="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/normalButton"
-        app:layout_constraintStart_toStartOf="@+id/normalButton"
-        app:layout_constraintTop_toBottomOf="@+id/normalButton"
-        app:srcCompat="@drawable/ic_automatic_weapon" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/currentHighScoreView"
@@ -158,5 +119,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/gearImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/desc_gear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loadoutDescriptionView"
+        app:srcCompat="@drawable/ic_handgun" />
 
 </android.support.constraint.ConstraintLayout>

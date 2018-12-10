@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:padding="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+  <ImageView
+      android:id="@+id/shopItem1"
+      android:layout_width="140dp"
+      android:layout_height="80dp"
+      android:contentDescription="@string/shop_item1_desc"
+      app:srcCompat="@drawable/ic_handgun"
+      tools:src="@tools:sample/avatars" />
+
+  <LinearLayout
+      android:id="@+id/itemDescription1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:orientation="vertical"
+      android:padding="5dp">
+
+    <TextView
+        android:id="@+id/itemText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/permanent_marker"
+        android:text="@string/shop_item1"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/shopPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shop_price1"
+        android:textAlignment="center" />
+  </LinearLayout>
+</LinearLayout>
