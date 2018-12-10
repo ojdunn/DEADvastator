@@ -10,6 +10,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+
 import edu.gvsu.cis.deadvastation.dummy.ShopContent;
 
 import static java.lang.Integer.valueOf;
@@ -34,6 +42,7 @@ public class LoadoutActivity extends AppCompatActivity {
 
     // Game state variables (may want in own class)
     // todo share variables with game to control state
+    public String userName = "Bad Dude";
     public Integer itemNumber = 0;
     public String itemName = "Pistol";
     public enum loadout {PISTOL, RIFLE, SNIPER};
@@ -42,6 +51,11 @@ public class LoadoutActivity extends AppCompatActivity {
     public Integer score = 100;  // todo put back at 0 after testing
     public Integer highScore = 100;  // todo retrieve from db
     public Integer health = 100;  // start at 100
+    public Integer saveNumber = 0;
+
+    // DB vars
+    public DatabaseReference topRef;
+    public static GameState gameData;
 
 
     @Override
@@ -60,7 +74,12 @@ public class LoadoutActivity extends AppCompatActivity {
         gearName = findViewById(R.id.gearName);
         saveButton = findViewById(R.id.saveButton);
 
-        //todo if user logged in, get the high score from the db
+        //todo if user logged in, get data from the db
+
+        gameData = new GameState();
+        gameData.currentScore = score;
+        gameData.itemName = itemName;
+        gameData.itemNumber = itemNumber;
 
         // update scores
         if (score >= highScore) {
@@ -80,6 +99,9 @@ public class LoadoutActivity extends AppCompatActivity {
 
         saveButton.setOnClickListener(v -> {
             // todo save data to db
+            saveData();
+            saveNumber++;
+            // todo feedback?
 
         });
 
@@ -97,6 +119,8 @@ public class LoadoutActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         // todo update the game data
+        topRef = FirebaseDatabase.getInstance().getReference("data");
+        topRef.addChildEventListener(chEvListener);
 
         // todo update the display views
         // update scores
@@ -105,6 +129,13 @@ public class LoadoutActivity extends AppCompatActivity {
             currentHighScore.setText(score.toString());
         }
 
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        topRef.removeEventListener(chEvListener);
+        //LocalBroadcastManager.getInstance(this).unregisterReceiver(weatherReceiver);
     }
 
     @Override
@@ -122,6 +153,7 @@ public class LoadoutActivity extends AppCompatActivity {
             intent.putExtra("health", health);
 //            intent.putExtra("ammo", ammoCount);
             startActivityForResult(intent, GAME_RESULT);
+            //saveData();
             return true;
         } else if(item.getItemId() == R.id.action_options) {
             Intent intent = new Intent(LoadoutActivity.this, OptionsActivity.class);
@@ -132,6 +164,7 @@ public class LoadoutActivity extends AppCompatActivity {
             Intent intent = new Intent(LoadoutActivity.this, ShopActivity.class);
             intent.putExtra("score", score);
             startActivityForResult(intent, SHOP_RESULT);
+            //saveData();
             return true;
         } else if(item.getItemId() == R.id.action_high_scores) {
             Intent intent = new Intent(LoadoutActivity.this, HighScoresActivity.class);
@@ -192,6 +225,64 @@ public class LoadoutActivity extends AppCompatActivity {
 
     }
 
+    private ChildEventListener chEvListener = new ChildEventListener() {
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            GameState entry = (GameState) dataSnapshot.getValue(GameState.class);
+            entry._key = dataSnapshot.getKey();
+            // todo have data here?
+            gameData = entry;
 
+//            HistoryContent.HistoryItem entry =
+//                    (HistoryContent.HistoryItem) dataSnapshot.getValue(HistoryContent.HistoryItem.class);
+//            entry._key = dataSnapshot.getKey();
+//            allHistory.add(entry);
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            GameState entry = (GameState) dataSnapshot.getValue(GameState.class);
+//            gameData = entry;  // todo not sure about this
+
+//            HistoryContent.HistoryItem entry =
+//                    (HistoryContent.HistoryItem) dataSnapshot.getValue(HistoryContent.HistoryItem.class);
+//            List<HistoryContent.HistoryItem> newHistory = new ArrayList<HistoryContent.HistoryItem>();
+//            for (HistoryContent.HistoryItem t : allHistory) {
+//                if (!t._key.equals(dataSnapshot.getKey())) {
+//                    newHistory.add(t);
+//                }
+//            }
+//            allHistory = newHistory;
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) { }
+    };
+
+    public GameState saveData() {
+        GameState data = new GameState(userName, itemName, itemNumber, score, health, saveNumber);
+        topRef.push().setValue(data);  // todo not sure about this
+
+//        HistoryContent.HistoryItem item2 = new HistoryContent.HistoryItem(vdVal, vcVal, mode.toString(),
+//                vfUnits.toString(), vtUnits.toString(), fmt.print(DateTime.now()));
+//        HistoryContent.addItem(item2);
+//        topRef.push().setValue(item2);
+
+        return data;
+    }
+
+    // todo
+    public void loadData() {
+        // query username and lastest save number and assign state locally
+
+    }
 
 }

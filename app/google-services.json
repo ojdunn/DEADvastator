@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "229860727850",
+    "firebase_url": "https://deadvastation.firebaseio.com",
+    "project_id": "deadvastation",
+    "storage_bucket": "deadvastation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229860727850:android:eb6f857c034457d3",
+        "android_client_info": {
+          "package_name": "edu.gvsu.cis.deadvastation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229860727850-u5omt5c2c6fekt5g95vadbh4n13diraf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_YgLTst7pXjT32xI-j5biSIGb09zWwxI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
