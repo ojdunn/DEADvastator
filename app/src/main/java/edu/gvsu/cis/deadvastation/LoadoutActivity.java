@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,8 +49,8 @@ public class LoadoutActivity extends AppCompatActivity {
     public enum loadout {PISTOL, RIFLE, SNIPER};
     public loadout loadout;
 //    public int ammoCount = 0;  // account for this?
-    public Integer score = 100;  // todo put back at 0 after testing
-    public Integer highScore = 100;  // todo retrieve from db
+    public Integer score =0;  // todo put back at 0 after testing
+    public Integer highScore = 0;  // todo retrieve from db
     public Integer health = 100;  // start at 100
     public Integer saveNumber = 0;
 
@@ -89,7 +90,7 @@ public class LoadoutActivity extends AppCompatActivity {
 
         playButton.setOnClickListener(v -> {
             // todo transition to game activity
-            Intent intent = new Intent(LoadoutActivity.this, GameActivity.class);
+            Intent intent = new Intent(LoadoutActivity.this, ActivityHolder.class);
             intent.putExtra("item", itemNumber);
             intent.putExtra("score", score);
             intent.putExtra("health", health);
@@ -284,5 +285,4 @@ public class LoadoutActivity extends AppCompatActivity {
         // query username and lastest save number and assign state locally
 
     }
-
 }
